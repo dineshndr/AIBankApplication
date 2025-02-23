@@ -1,13 +1,14 @@
 # Use an official OpenJDK runtime as a parent image
 FROM eclipse-temurin:21-jdk-alpine
 
-# Set the working directory inside the container (optional, can be the root directory)
+# Set the working directory inside the container
 WORKDIR /usr/app
 
-# Copy the built JAR file from the target directory into the container
-COPY BankWebApplication.jar /usr/app/BankWebApplication.jar
+# Download the JAR from Google Drive (modify link accordingly)
+RUN apk add --no-cache curl \
+    && curl -L -o BankWebApplication.jar "https://drive.google.com/uc?export=download&id=1vB55pAMh4atLTLrLVk1sykfjxyNnTN_n"
 
-# Expose the application port (modify as per your app's port)
+# Expose the application port
 EXPOSE 8081
 
 # Command to run the application
