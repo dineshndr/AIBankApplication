@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /usr/app
 
 # Copy the built JAR file from the target directory into the container
-COPY target/BankWebApplication.jar /usr/app/BankWebApplication.jar
+COPY BankWebApplication.jar /usr/app/BankWebApplication.jar
 
 # Expose the application port (modify as per your app's port)
 EXPOSE 8081
