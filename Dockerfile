@@ -12,4 +12,4 @@ RUN apk add --no-cache curl \
 EXPOSE 8081
 
 # Command to run the application
-ENTRYPOINT ["java", "-jar", "/usr/app/BankWebApplication.jar"]
+ENTRYPOINT ["java" "-jar", "/usr/app/BankWebApplication.jar"]
