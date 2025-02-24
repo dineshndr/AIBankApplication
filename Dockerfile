@@ -6,7 +6,7 @@ WORKDIR /usr/app
 
 # Download the JAR from Google Drive (modify link accordingly)
 RUN apk add --no-cache curl \
-    && curl -L -o BankWebApplication.jar "https://drive.google.com/uc?export=download&id=1vB55pAMh4atLTLrLVk1sykfjxyNnTN_n"
+    && curl -L -o BankWebApplication.jar "https://drive.google.com/file/d/1xGEyvGjp73kMSYuK0WW7mOw5SZTDH3Au/view?usp=drive_link"
 
 # Expose the application port
 EXPOSE 8081
