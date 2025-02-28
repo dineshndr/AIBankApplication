@@ -1,0 +1,13 @@
+.dashboard-container {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .dashboard-container h2 {
+    font-size: 24px;
+  }
+  
+  .dashboard-container p {
+    font-size: 20px;
+  }
+  
