@@ -35,8 +35,8 @@ jobs:
       with:
         image: dineshndr/bankapp
         registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: dineshndr
+        password: Ndr@12345
 
 
 
