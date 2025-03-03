@@ -43,8 +43,8 @@ ENV JAR_URL="https://github.com/dineshndr/AIBankApplication/releases/download/v0
 ENV JAR_FILE="BankWebApplication.jar"
 
 # Set environment variables for Spring properties
-ENV SPRING_DATASOURCE_URL="jdbc:postgresql://postgres:5432/paymentdb"
-ENV SPRING_DATASOURCE_USERNAME="dineshndr"
+ENV SPRING_DATASOURCE_URL="jdbc:postgresql://192.168.1.241:5432/paymentdb"
+ENV SPRING_DATASOURCE_USERNAME="postgres"
 ENV SPRING_DATASOURCE_PASSWORD="12345"
 ENV SPRING_DATASOURCE_DRIVER_CLASS_NAME="org.postgresql.Driver"
 ENV SPRING_JPA_DATABASE_PLATFORM="org.hibernate.dialect.PostgreSQLDialect"
