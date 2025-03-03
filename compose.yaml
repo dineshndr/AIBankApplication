@@ -16,10 +16,10 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - DB_HOST=postgres
+      - DB_HOST=192.168.1.241
       - DB_PORT=5432
       - DB_NAME=paymentdb
-      - DB_USERNAME=dineshndr
+      - DB_USERNAME=postgres
       - DB_PASSWORD=12345
       - OPENAI_API_KEY=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
     ports:
