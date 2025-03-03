@@ -32,37 +32,37 @@
 # # Command to run the application
 # ENTRYPOINT ["java", "-jar", "/usr/app/BankWebApplication.jar"]
 
-version: '3.8'
-services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=paymentdb'
-      - 'POSTGRES_USER=dineshndr'
-      - 'POSTGRES_PASSWORD=12345'
-    ports:
-      - '5432:5432'
-    networks:
-      - mynetwork
+# Use an official OpenJDK runtime as a parent image
+FROM eclipse-temurin:21-jdk-alpine
 
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_NAME=paymentdb
-      - DB_USERNAME=dineshndr
-      - DB_PASSWORD=12345
-      - OPENAI_API_KEY=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
-    ports:
-      - '8081:8081'
-    depends_on:
-      - postgres
-    networks:
-      - mynetwork
+# Set the working directory inside the container
+WORKDIR /usr/app
 
-networks:
-  mynetwork:
-    driver: bridge
+# Set environment variables for the download URL and JAR file name
+ENV JAR_URL="https://github.com/dineshndr/AIBankApplication/releases/download/v0.0.1/BankWebApplication-0.0.1-SNAPSHOT.jar"
+ENV JAR_FILE="BankWebApplication.jar"
+
+# Set environment variables for Spring properties
+ENV SPRING_DATASOURCE_URL="jdbc:postgresql://postgres:5432/paymentdb"
+ENV SPRING_DATASOURCE_USERNAME="dineshndr"
+ENV SPRING_DATASOURCE_PASSWORD="12345"
+ENV SPRING_DATASOURCE_DRIVER_CLASS_NAME="org.postgresql.Driver"
+ENV SPRING_JPA_DATABASE_PLATFORM="org.hibernate.dialect.PostgreSQLDialect"
+ENV SPRING_JPA_HIBERNATE_DDL_AUTO="update"
+ENV SPRING_AI_OPENAI_API_KEY="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"
+ENV SPRING_APPLICATION_NAME="BankWebApplication"
+ENV SPRING_CLOUD_DISCOVERY_ENABLED="false"
+ENV EUREKA_CLIENT_ENABLED="false"
+ENV SERVER_PORT="8081"
+
+# Install curl and wget to download the JAR file
+RUN apk add --no-cache curl wget \
+    && wget --no-check-certificate -q --show-progress "$JAR_URL" -O /usr/app/$JAR_FILE \
+    && chmod +x /usr/app/$JAR_FILE \
+    && ls -lh /usr/app/$JAR_FILE
+
+# Expose the application port
+EXPOSE 8081
+
+# Command to run the application
+ENTRYPOINT ["java", "-jar", "/usr/app/BankWebApplication.jar"]
