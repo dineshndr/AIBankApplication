@@ -1,9 +1,34 @@
+version: '3.8'
 services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_DB=paymentdb'
+      - 'POSTGRES_USER=dineshndr'
+      - 'POSTGRES_PASSWORD=12345'
     ports:
-      - '5432'
+      - '5432:5432'
+    networks:
+      - mynetwork
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=paymentdb
+      - DB_USERNAME=dineshndr
+      - DB_PASSWORD=12345
+      - OPENAI_API_KEY=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
+    ports:
+      - '8081:8081'
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
