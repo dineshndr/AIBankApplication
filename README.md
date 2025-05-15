@@ -64,14 +64,18 @@ API key is securely injected through the `application.properties` file.
 # Build and run backend
 ./mvnw clean install
 ./mvnw spring-boot:run
-
+```
 Ensure you set your OpenAI API key in src/main/resources/application.properties:
+```
 openai.api.key=your_openai_api_key
+```
 🌐 Frontend Setup (React)
+```
 cd bankapp-frontend
 npm install
 npm start
-Runs the app at: http://localhost:3000
+```
+Run the app at: http://localhost:3000
 
 
 🐳 Docker Setup
@@ -79,7 +83,9 @@ Build & Run Entire Stack
 bash
 Copy
 Edit
+```
 docker compose up --build
+```
 Frontend: http://localhost:3000
 
 Backend API: http://localhost:8080
